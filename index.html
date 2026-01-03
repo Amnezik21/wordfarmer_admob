@@ -4,15 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WordFarmer — Site développeur officiel</title>
-  <meta name="description" content="WordFarmer est un jeu de mots familial au style cartoon. Trouve des mots, débloque des niveaux et relève des défis." />
+  <meta name="description" content="WordFarmer est un jeu de mots familial au style cartoon : défis entre joueurs, moisson journalière, niveaux variés et foire dès le niveau 50." />
   <meta name="robots" content="index,follow" />
 
   <!-- Open Graph (partage) -->
   <meta property="og:title" content="WordFarmer — Site développeur officiel" />
-  <meta property="og:description" content="Jeu de mots familial au style cartoon. Niveaux, mots bonus, défis, progression." />
+  <meta property="og:description" content="Jeu de mots familial au style cartoon : défis, moisson journalière, niveaux variés et foire dès le niveau 50." />
   <meta property="og:type" content="website" />
 
-  <!-- Petite base de style sans dépendances -->
   <style>
     :root{
       --bg: #0b1220;
@@ -29,7 +28,6 @@
       --max: 1040px;
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -42,7 +40,6 @@
         var(--bg);
       line-height:1.55;
     }
-
     a{color:inherit}
     .wrap{max-width: var(--max); margin: 0 auto; padding: 26px 18px 54px;}
     .topbar{
@@ -54,13 +51,14 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
     }
-    .brand{
-      display:flex; align-items:center; gap:10px; min-width: 200px;
-    }
-    .logo{
-      width:38px; height:38px; border-radius: 12px;
-      background: linear-gradient(135deg, rgba(110,231,183,.9), rgba(96,165,250,.9));
+
+    .brand{display:flex; align-items:center; gap:12px; min-width: 220px;}
+    .avatar{
+      width:40px; height:40px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.04);
+      object-fit: cover;
     }
     .brand h1{font-size: 16px; margin:0;}
     .brand p{margin:0; font-size: 12px; color: var(--muted);}
@@ -109,7 +107,7 @@
     }
 
     .hero h2{font-size: 34px; margin: 12px 0 10px; line-height: 1.1;}
-    .hero p{margin: 0 0 16px; color: var(--muted); font-size: 15px; max-width: 62ch;}
+    .hero p{margin: 0 0 16px; color: var(--muted); font-size: 15px; max-width: 70ch;}
 
     .cta{display:flex; gap:10px; flex-wrap: wrap;}
     .btn{
@@ -119,7 +117,7 @@
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.05);
       text-decoration:none;
-      font-weight: 600;
+      font-weight: 650;
       font-size: 14px;
     }
     .btn:hover{border-color: rgba(255,255,255,.30)}
@@ -144,6 +142,7 @@
       display:grid;
       grid-template-columns: 1fr;
       gap: 12px;
+      margin-top:10px;
     }
     .meta .row{
       display:flex; justify-content:space-between; gap:12px; flex-wrap: wrap;
@@ -173,16 +172,6 @@
     .feature ul{margin: 0; padding-left: 18px; color: var(--muted);}
     .feature li{margin: 7px 0; font-size: 14px;}
 
-    .note{
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: var(--radius);
-      border: 1px dashed rgba(255,255,255,.24);
-      background: rgba(0,0,0,.10);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
     footer{
       margin-top: 22px;
       padding-top: 16px;
@@ -196,8 +185,8 @@
     footer a:hover{color: var(--text); border-bottom-color: rgba(255,255,255,.40);}
 
     @media (max-width: 920px){
-      .hero-grid{grid-template-columns: 1fr; }
-      main{grid-template-columns: 1fr; }
+      .hero-grid{grid-template-columns: 1fr;}
+      main{grid-template-columns: 1fr;}
       .hero h2{font-size: 30px;}
       .nav{justify-content:flex-start;}
     }
@@ -208,7 +197,15 @@
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <!-- Avatar admin -->
+        <img
+          class="avatar"
+          src="https://raw.githubusercontent.com/Amnezik21/wordfarmer_admob/main/Admin.png"
+          alt="Avatar WordFarmer"
+          width="40"
+          height="40"
+          loading="lazy"
+        />
         <div>
           <h1>WordFarmer</h1>
           <p>Site développeur officiel</p>
@@ -217,7 +214,7 @@
 
       <nav class="nav" aria-label="Navigation">
         <a class="chip" href="#jeu">Le jeu</a>
-        <a class="chip" href="#support">Support</a>
+        <a class="chip" href="#features">Fonctionnalités</a>
         <a class="chip" href="#liens">Liens</a>
       </nav>
     </div>
@@ -226,16 +223,19 @@
       <div class="hero-grid">
         <div>
           <div class="kicker"><span class="dot"></span>Jeu de mots familial • Univers cartoon</div>
-          <h2>Récolte des mots, progresse, et relève des défis.</h2>
+          <h2>Récolte des mots, gagne des pièces, et défie d’autres joueurs.</h2>
           <p>
-            WordFarmer est un jeu de lettres pensé pour tous : des parties rapides, des mots bonus à découvrir,
-            une progression satisfaisante et un style visuel chaleureux.
+            WordFarmer est un jeu de lettres pensé pour tous : des niveaux variés, une progression gratifiante,
+            des événements et des mécaniques qui donnent envie de revenir chaque jour.
           </p>
 
           <div class="cta" id="liens">
-            <!-- Optionnel : remplace par ton lien Play Store si tu veux -->
-            <a class="btn primary" href="#" onclick="alert('Ajoute ici ton lien Play Store si tu le souhaites.'); return false;">
-              Télécharger sur Google Play
+            <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.wordfarmers.jeu" target="_blank" rel="noopener">
+              Google Play — Télécharger
+            </a>
+
+            <a class="btn" href="https://www.facebook.com/profile.php?id=61580777663836" target="_blank" rel="noopener">
+              Page Facebook
             </a>
 
             <a class="btn" href="https://amnezik21.github.io/wordfarmer_privacy/" target="_blank" rel="noopener">
@@ -246,58 +246,53 @@
               Suppression de compte
             </a>
           </div>
-
-          <div class="note">
-            Astuce : cette page sert aussi de “site développeur” référencé sur Google Play et pour la validation AdMob via <b>app-ads.txt</b>.
-          </div>
         </div>
 
         <aside class="card">
           <h3>Infos rapides</h3>
-          <div class="meta" style="margin-top:10px;">
+          <div class="meta">
             <div class="row">
               <span>Public</span>
               <b>Familial / grand public</b>
             </div>
             <div class="row">
-              <span>Type</span>
-              <b>Jeu de lettres</b>
+              <span>Points forts</span>
+              <b>Défis • Moisson • Foire</b>
             </div>
             <div class="row">
-              <span>Support</span>
-              <b>Contact via email</b>
+              <span>À partir du niveau 50</span>
+              <b>La Foire : rejouer des niveaux</b>
             </div>
             <div class="row">
               <span>Liens</span>
-              <b>Privacy + Suppression compte</b>
+              <b>Play Store • Facebook • Privacy</b>
             </div>
           </div>
 
           <p style="margin-top:12px;">
-            Besoin d’aide ? Tu peux utiliser les liens ci-dessous (privacy / suppression), ou contacter le support depuis la fiche Play Store.
+            Pour toute demande (support, compte, confidentialité), utilise les liens dédiés ci-dessous ou la fiche Play Store.
           </p>
         </aside>
       </div>
     </header>
 
-    <main>
+    <main id="features">
       <section class="feature">
-        <h3>Ce que tu peux faire dans WordFarmer</h3>
+        <h3>Fonctionnalités principales</h3>
         <ul>
-          <li>Trouver des mots à partir d’un set de lettres (usage unique).</li>
-          <li>Débloquer des niveaux et progresser dans l’univers.</li>
-          <li>Découvrir des mots bonus pour maximiser tes récompenses.</li>
-          <li>Profiter d’un style graphique cartoon et d’une ambiance détendue.</li>
+          <li><b>Niveaux variés</b> et progression régulière.</li>
+          <li><b>Défis entre joueurs</b> pour se mesurer et grimper.</li>
+          <li><b>Moisson journalière</b> pour gagner un maximum de pièces.</li>
+          <li><b>Mots bonus</b> à découvrir pour optimiser tes récompenses.</li>
         </ul>
       </section>
 
-      <section class="feature" id="support">
-        <h3>Support & conformité</h3>
+      <section class="feature">
+        <h3>La Foire (dès le niveau 50)</h3>
         <ul>
-          <li>Politique de confidentialité disponible en ligne.</li>
-          <li>Procédure de suppression de compte accessible via une page dédiée.</li>
-          <li>Référence technique AdMob : <code>app-ads.txt</code> à la racine du site.</li>
-          <li>Coordonnées développeur gérées dans la fiche Google Play.</li>
+          <li>Un espace dédié pour <b>rejouer des niveaux passés</b>.</li>
+          <li>Parfait pour progresser à ton rythme et farmer des pièces.</li>
+          <li>Une “boucle de gameplay” idéale pour revenir quand tu veux.</li>
         </ul>
       </section>
     </main>
@@ -305,6 +300,8 @@
     <footer>
       <div>© <span id="y"></span> WordFarmer • Développeur : Amnezik21</div>
       <div class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.wordfarmers.jeu" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://www.facebook.com/profile.php?id=61580777663836" target="_blank" rel="noopener">Facebook</a>
         <a href="https://amnezik21.github.io/wordfarmer_privacy/" target="_blank" rel="noopener">Politique de confidentialité</a>
         <a href="https://amnezik21.github.io/contact_suppression_compte_wordfarmer/" target="_blank" rel="noopener">Suppression de compte</a>
       </div>
