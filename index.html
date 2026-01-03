@@ -7,7 +7,6 @@
   <meta name="description" content="WordFarmer est un jeu de mots familial au style cartoon : défis entre joueurs, moisson journalière, niveaux variés et foire dès le niveau 50." />
   <meta name="robots" content="index,follow" />
 
-  <!-- Open Graph (partage) -->
   <meta property="og:title" content="WordFarmer — Site développeur officiel" />
   <meta property="og:description" content="Jeu de mots familial au style cartoon : défis, moisson journalière, niveaux variés et foire dès le niveau 50." />
   <meta property="og:type" content="website" />
@@ -15,10 +14,10 @@
   <style>
     :root{
       --bg: #0b1220;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.10);
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
+      --muted: rgba(255,255,255,.72);
       --line: rgba(255,255,255,.14);
       --accent: #6ee7b7;
       --accent2: #60a5fa;
@@ -28,31 +27,37 @@
       --max: 1040px;
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: var(--font);
       color: var(--text);
       background:
-        radial-gradient(1000px 520px at 10% -10%, rgba(96,165,250,.24), transparent 60%),
-        radial-gradient(900px 520px at 90% 0%, rgba(110,231,183,.20), transparent 60%),
-        radial-gradient(800px 520px at 60% 120%, rgba(251,191,36,.14), transparent 60%),
+        radial-gradient(1100px 560px at 10% -10%, rgba(96,165,250,.22), transparent 60%),
+        radial-gradient(1000px 560px at 90% 0%, rgba(110,231,183,.18), transparent 60%),
+        radial-gradient(900px 560px at 60% 120%, rgba(251,191,36,.12), transparent 60%),
         var(--bg);
-      line-height:1.55;
+      line-height:1.6;
     }
+
     a{color:inherit}
-    .wrap{max-width: var(--max); margin: 0 auto; padding: 26px 18px 54px;}
+    .wrap{max-width: var(--max); margin: 0 auto; padding: 30px 18px 70px;}
+    .spacer{height: 18px;}
+    .spacer-lg{height: 28px;}
+
+    /* Top bar */
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
       gap:14px; padding: 14px 16px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(180deg, var(--card), transparent);
+      background: linear-gradient(180deg, var(--panel), transparent);
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
     }
 
-    .brand{display:flex; align-items:center; gap:12px; min-width: 220px;}
+    .brand{display:flex; align-items:center; gap:12px;}
     .avatar{
       width:40px; height:40px; border-radius: 14px;
       border: 1px solid rgba(255,255,255,.18);
@@ -75,20 +80,13 @@
     }
     .chip:hover{border-color: rgba(255,255,255,.28); color: var(--text);}
 
-    header.hero{
-      margin-top: 18px;
-      padding: 26px 18px;
-      border-radius: var(--radius);
+    /* Sections */
+    .section{
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--card2), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--panel2), rgba(255,255,255,.02));
       box-shadow: var(--shadow);
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items: start;
+      padding: 22px;
     }
 
     .kicker{
@@ -106,13 +104,20 @@
       box-shadow: 0 0 0 4px rgba(110,231,183,.12);
     }
 
-    .hero h2{font-size: 34px; margin: 12px 0 10px; line-height: 1.1;}
+    /* Hero (simplifié) */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items:start;
+    }
+    .hero h2{font-size: 36px; margin: 12px 0 8px; line-height: 1.1;}
     .hero p{margin: 0 0 16px; color: var(--muted); font-size: 15px; max-width: 70ch;}
 
     .cta{display:flex; gap:10px; flex-wrap: wrap;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding: 11px 14px;
+      padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.05);
@@ -125,55 +130,69 @@
       border-color: rgba(110,231,183,.45);
       background: linear-gradient(135deg, rgba(110,231,183,.18), rgba(96,165,250,.12));
     }
+    .btn.ghost{color: var(--muted); background: rgba(255,255,255,.03);}
     .btn.warn{
       border-color: rgba(251,191,36,.55);
-      background: linear-gradient(135deg, rgba(251,191,36,.14), rgba(255,255,255,.04));
+      background: linear-gradient(135deg, rgba(251,191,36,.12), rgba(255,255,255,.04));
     }
 
-    .card{
-      border: 1px solid var(--line);
+    /* Side summary (plus léger) */
+    .side{
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: var(--radius);
-      background: rgba(255,255,255,.03);
+      background: rgba(0,0,0,.08);
       padding: 16px;
     }
-    .card h3{margin:0 0 8px; font-size: 15px;}
-    .card p{margin:0; color: var(--muted); font-size: 13px;}
-    .meta{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top:10px;
-    }
-    .meta .row{
-      display:flex; justify-content:space-between; gap:12px; flex-wrap: wrap;
+    .side h3{margin:0 0 10px; font-size: 15px;}
+    .rows{display:grid; gap:10px;}
+    .row{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
       padding: 10px 12px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.08);
+      background: rgba(255,255,255,.03);
     }
-    .meta .row span{color: var(--muted); font-size: 13px;}
-    .meta .row b{font-size: 13px;}
+    .row span{color: var(--muted); font-size: 13px;}
+    .row b{font-size: 13px;}
 
-    main{
-      margin-top: 18px;
+    /* Legal links block */
+    .legal{
+      display:flex; flex-wrap:wrap; gap:10px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.10);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .legal a{
+      text-decoration:none;
+      border-bottom: 1px dotted rgba(255,255,255,.25);
+      padding-bottom: 1px;
+    }
+    .legal a:hover{color: var(--text); border-bottom-color: rgba(255,255,255,.45);}
+
+    /* Feature grid */
+    .grid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
     }
-
-    .feature{
+    .card{
       padding: 16px;
       border-radius: var(--radius);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.14);
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+      box-shadow: 0 10px 26px rgba(0,0,0,.20);
     }
-    .feature h3{margin: 0 0 8px; font-size: 16px;}
-    .feature ul{margin: 0; padding-left: 18px; color: var(--muted);}
-    .feature li{margin: 7px 0; font-size: 14px;}
+    .card h3{margin:0 0 8px; font-size: 16px;}
+    .card p{margin:0 0 10px; color: var(--muted); font-size: 14px;}
+    .card ul{margin:0; padding-left: 18px; color: var(--muted);}
+    .card li{margin: 7px 0; font-size: 14px;}
 
+    /* Footer */
     footer{
-      margin-top: 22px;
+      margin-top: 26px;
       padding-top: 16px;
       border-top: 1px solid var(--line);
       color: var(--muted);
@@ -184,9 +203,10 @@
     footer a{color: var(--muted); text-decoration:none; border-bottom: 1px dotted rgba(255,255,255,.22);}
     footer a:hover{color: var(--text); border-bottom-color: rgba(255,255,255,.40);}
 
-    @media (max-width: 920px){
-      .hero-grid{grid-template-columns: 1fr;}
-      main{grid-template-columns: 1fr;}
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{grid-template-columns: 1fr;}
+      .grid{grid-template-columns: 1fr;}
       .hero h2{font-size: 30px;}
       .nav{justify-content:flex-start;}
     }
@@ -195,9 +215,9 @@
 
 <body>
   <div class="wrap">
+    <!-- Top bar -->
     <div class="topbar">
       <div class="brand">
-        <!-- Avatar admin -->
         <img
           class="avatar"
           src="https://raw.githubusercontent.com/Amnezik21/wordfarmer_admob/main/Admin.png"
@@ -214,88 +234,123 @@
 
       <nav class="nav" aria-label="Navigation">
         <a class="chip" href="#jeu">Le jeu</a>
-        <a class="chip" href="#features">Fonctionnalités</a>
+        <a class="chip" href="#fonctionnalites">Fonctionnalités</a>
         <a class="chip" href="#liens">Liens</a>
       </nav>
     </div>
 
-    <header class="hero" id="jeu">
-      <div class="hero-grid">
+    <div class="spacer-lg"></div>
+
+    <!-- HERO -->
+    <section class="section" id="jeu">
+      <div class="hero">
         <div>
           <div class="kicker"><span class="dot"></span>Jeu de mots familial • Univers cartoon</div>
-          <h2>Récolte des mots, gagne des pièces, et défie d’autres joueurs.</h2>
+          <h2>Récolte des mots, reviens chaque jour, et défie d’autres joueurs.</h2>
           <p>
-            WordFarmer est un jeu de lettres pensé pour tous : des niveaux variés, une progression gratifiante,
-            des événements et des mécaniques qui donnent envie de revenir chaque jour.
+            WordFarmer propose des niveaux variés, une progression fluide et des mécaniques “retour quotidien”.
+            Entre défis entre joueurs, moisson journalière et événements, il y a toujours une bonne raison de lancer une partie.
           </p>
 
+          <!-- CTA : uniquement l'essentiel -->
           <div class="cta" id="liens">
             <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.wordfarmers.jeu" target="_blank" rel="noopener">
-              Google Play — Télécharger
+              Télécharger sur Google Play
             </a>
-
-            <a class="btn" href="https://www.facebook.com/profile.php?id=61580777663836" target="_blank" rel="noopener">
+            <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61580777663836" target="_blank" rel="noopener">
               Page Facebook
-            </a>
-
-            <a class="btn" href="https://amnezik21.github.io/wordfarmer_privacy/" target="_blank" rel="noopener">
-              Politique de confidentialité
-            </a>
-
-            <a class="btn warn" href="https://amnezik21.github.io/contact_suppression_compte_wordfarmer/" target="_blank" rel="noopener">
-              Suppression de compte
             </a>
           </div>
         </div>
 
-        <aside class="card">
-          <h3>Infos rapides</h3>
-          <div class="meta">
+        <!-- Résumé léger -->
+        <aside class="side" aria-label="Résumé">
+          <h3>En bref</h3>
+          <div class="rows">
             <div class="row">
               <span>Public</span>
               <b>Familial / grand public</b>
             </div>
             <div class="row">
-              <span>Points forts</span>
-              <b>Défis • Moisson • Foire</b>
+              <span>Quotidien</span>
+              <b>Moisson journalière</b>
             </div>
             <div class="row">
-              <span>À partir du niveau 50</span>
+              <span>Social</span>
+              <b>Défis entre joueurs</b>
+            </div>
+            <div class="row">
+              <span>Niveau 50+</span>
               <b>La Foire : rejouer des niveaux</b>
             </div>
-            <div class="row">
-              <span>Liens</span>
-              <b>Play Store • Facebook • Privacy</b>
-            </div>
           </div>
-
-          <p style="margin-top:12px;">
-            Pour toute demande (support, compte, confidentialité), utilise les liens dédiés ci-dessous ou la fiche Play Store.
-          </p>
         </aside>
       </div>
-    </header>
 
-    <main id="features">
-      <section class="feature">
-        <h3>Fonctionnalités principales</h3>
-        <ul>
-          <li><b>Niveaux variés</b> et progression régulière.</li>
-          <li><b>Défis entre joueurs</b> pour se mesurer et grimper.</li>
-          <li><b>Moisson journalière</b> pour gagner un maximum de pièces.</li>
-          <li><b>Mots bonus</b> à découvrir pour optimiser tes récompenses.</li>
-        </ul>
-      </section>
+      <div class="spacer"></div>
 
-      <section class="feature">
-        <h3>La Foire (dès le niveau 50)</h3>
-        <ul>
-          <li>Un espace dédié pour <b>rejouer des niveaux passés</b>.</li>
-          <li>Parfait pour progresser à ton rythme et farmer des pièces.</li>
-          <li>Une “boucle de gameplay” idéale pour revenir quand tu veux.</li>
-        </ul>
-      </section>
-    </main>
+      <!-- Liens légaux séparés (lisible, pas envahissant) -->
+      <div class="legal">
+        <b style="color:rgba(255,255,255,.86)">Liens officiels :</b>
+        <a href="https://amnezik21.github.io/wordfarmer_privacy/" target="_blank" rel="noopener">Politique de confidentialité</a>
+        <span>•</span>
+        <a href="https://amnezik21.github.io/contact_suppression_compte_wordfarmer/" target="_blank" rel="noopener">Suppression de compte</a>
+      </div>
+    </section>
+
+    <div class="spacer-lg"></div>
+
+    <!-- FEATURES -->
+    <section class="section" id="fonctionnalites">
+      <div class="kicker"><span class="dot"></span>Fonctionnalités</div>
+      <div class="spacer"></div>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Gameplay principal</h3>
+          <p>Le cœur du jeu : une progression claire et des niveaux variés.</p>
+          <ul>
+            <li>Niveaux variés et progression régulière.</li>
+            <li>Mots bonus à découvrir pour optimiser les gains.</li>
+            <li>Ambiance cartoon, accessible à tous.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Moisson journalière</h3>
+          <p>Un rendez-vous quotidien pour gagner beaucoup de pièces.</p>
+          <ul>
+            <li>Récompenses généreuses chaque jour.</li>
+            <li>Motivation “retour quotidien”.</li>
+            <li>Idéal pour booster ta progression.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Défis entre joueurs</h3>
+          <p>Le mode social : se mesurer, progresser et se challenger.</p>
+          <ul>
+            <li>Défis et confrontation joueur contre joueur.</li>
+            <li>Objectif : grimper et se démarquer.</li>
+            <li>Parfait pour jouer entre amis.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="spacer-lg"></div>
+
+      <div class="grid" style="grid-template-columns: 1fr;">
+        <article class="card">
+          <h3>La Foire (dès le niveau 50)</h3>
+          <p>Un espace dédié pour rejouer des niveaux passés et progresser à ton rythme.</p>
+          <ul>
+            <li>Rejouer des niveaux déjà terminés.</li>
+            <li>Pratique pour “farmer” des pièces et s’entraîner.</li>
+            <li>Une boucle de jeu simple et efficace pour revenir quand tu veux.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
     <footer>
       <div>© <span id="y"></span> WordFarmer • Développeur : Amnezik21</div>
