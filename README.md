@@ -55,5 +55,31 @@ Ouvrir dans un navigateur :
 
 `https://Amnezik21.github.io/wordfarmer_admob/app-ads.txt`
 
-Le contenu doit être strictement conforme au format IAB, par exemple :
+Le contenu doit être strictement conforme au format IAB, par exemple : google.com, pub-3399222389109799, DIRECT, f08c47fec0942fa0 .
+
+
+Erreurs fréquentes :
+- fichier déplacé dans un dossier,
+- extension incorrecte (`app-ads.txt.txt`),
+- contenu entouré d’HTML/texte,
+- URL en 404 ou redirection non voulue.
+
+---
+
+## 🎯 Intégration Google Play Console
+
+Dans la fiche Play Store :
+- **Paramètres de la fiche Play Store → Coordonnées → Site Web**
+  - renseigner : `https://Amnezik21.github.io/wordfarmer_admob/`
+
+---
+
+## ✏️ Modifier le site
+
+Le site est volontairement **sans dépendances** (HTML/CSS pur) :
+1. Modifier `index.html`
+2. Commit sur `main`
+3. Le déploiement se fait automatiquement via GitHub Actions
+
+
 
